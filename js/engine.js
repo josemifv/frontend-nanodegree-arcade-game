@@ -57,7 +57,7 @@ var Engine = (function(global) {
          * function again as soon as the browser is able to draw another frame.
          */
         win.requestAnimationFrame(main);
-    };
+    }
 
     /* This function does some initial setup that should only occur once,
      * particularly setting the lastTime variable that is required for the
@@ -80,7 +80,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
     }
 
     /* This is called by the update function  and loops through all of the
@@ -95,6 +95,29 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
+    }
+
+    /* This is called by the update function and loops through all of the 
+     * objects within your allEnemies array as defined in app.js and check
+     * if collide with the player. If there is a collision, player dies.
+     */
+    function checkCollisions() {
+        allEnemies.forEach(function(enemy) {
+            if (collides(enemy, player)) {
+                player.die();
+            }
+        });
+    }
+
+    /* Helper function that checks if two object collide.
+     */
+    function collides(object1, object2) {
+        a = object1.getBoundingBox();
+        b = object2.getBoundingBox();
+        return a.x < b.x + b.width &&
+               a.x + a.width > b.x &&
+               a.y < b.y + b.height &&
+               a.y + a.height > b.y;
     }
 
     /* This function initially draws the "game level", it will then call
