@@ -158,7 +158,9 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
-
+        // Reder score
+        ctx.font = "bold 12px Helvetica";
+        ctx.fillText("SCORE: " + player.score, 10, 75);
 
         renderEntities();
     }

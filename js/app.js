@@ -49,11 +49,12 @@ var Player = function() {
     // Set initial position
     this.x = 202;
     this.y = 404;
+    // Set initial score
+    this.score = 0;
 };
 
 // Do nothing as no player properties has to be updated
 Player.prototype.update = function() {
-
 };
 
 // Draw the player on the screen, required method for game
@@ -64,13 +65,17 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(key) {
     switch (key) {
         case 'left':
-            if (this.x - 101 >= 0) {
+            if (this.x >= 101) {
                 this.x = this.x - 101;
             }            
             break;
         case 'up':
-            if (this.y - 83 >= 0) {
+            if (this.y > 0) {
                 this.y = this.y - 83;
+                // Player got the water zone!
+                if (this.y < 0) {
+                    this.win();
+                }
             }
             break;
         case 'right':
@@ -96,11 +101,19 @@ Player.prototype.getBoundingBox = function() {
     };
 };
 
+// Called when the player wins the game (gets to the water zone)
+Player.prototype.win = function() {
+    this.x = 202;
+    this.y = 404;
+    this.score += 100;    
+}
+
 // Called when the game is over (an enemy and the player colllide)
 Player.prototype.die = function() {
     // GAME OVER - Return to initial position
     this.x = 202;
     this.y = 404;
+    this.score = 0;
 };
 
 // Now instantiate your objects.
