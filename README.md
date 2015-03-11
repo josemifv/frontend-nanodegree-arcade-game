@@ -12,6 +12,9 @@ The repository includes the following files:
 * **README.md**: The GitHub readme file.
 * and some images in the images directory.
 
+### Running the game
+Open **index.html** with your favourite browser and follow the instructions on the web page. Use arrow keys (←↑↓→) to move the player and try to get the water zone. Every time you get there without being caught will increase your score in 100 points!.
+
 ### Resources used to complete this project
 * [Udacity's Object-Oriented JavaScript course](https://www.udacity.com/course/ud015)
 * [Udacity's HTML5 Canvas course](https://www.udacity.com/course/ud292)

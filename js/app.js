@@ -6,11 +6,11 @@ var Enemy = function(row) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    
+
     // Set initial potition according its row
     this.x = 0;
     this.y = (row * 83) + 72;
-    
+
     // Set enemy speed randomly (minSpeed <= enemy speed < maxSpeed)
     minSpeed = 50;
     maxSpeed = 250;
@@ -33,7 +33,7 @@ Enemy.prototype.render = function() {
 
 // Return enemy bounding box (used to check collisions)
 Enemy.prototype.getBoundingBox = function() {
-    return { 
+    return {
         x: this.x,
         y: this.y + 50,
         width: 50,
@@ -67,7 +67,7 @@ Player.prototype.handleInput = function(key) {
         case 'left':
             if (this.x >= 101) {
                 this.x = this.x - 101;
-            }            
+            }
             break;
         case 'up':
             if (this.y > 0) {
@@ -83,7 +83,7 @@ Player.prototype.handleInput = function(key) {
                 this.x = (this.x + 101);
             }
             break;
-        case 'down': 
+        case 'down':
             if (this.y + 83 <= 404) {
                 this.y = this.y + 83 ;
             }
@@ -93,7 +93,7 @@ Player.prototype.handleInput = function(key) {
 
 // Return player bounding box (used to check collisions)
 Player.prototype.getBoundingBox = function() {
-    return { 
+    return {
         x: this.x,
         y: this.y + 50,
         width: 50,
@@ -105,8 +105,8 @@ Player.prototype.getBoundingBox = function() {
 Player.prototype.win = function() {
     this.x = 202;
     this.y = 404;
-    this.score += 100;    
-}
+    this.score += 100;
+};
 
 // Called when the game is over (an enemy and the player colllide)
 Player.prototype.die = function() {
